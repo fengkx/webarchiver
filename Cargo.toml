@@ -1,0 +1,20 @@
+[package]
+name = "webarchiver"
+version = "0.1.0"
+authors = ["fengkx <liangkx8237@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[[bin]]
+name = "webarchiver"
+
+[dependencies]
+log = "0.4.0"
+env_logger = "0.8.3"
+reqwest = { version = "0.11", features = ["multipart"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0", features = [ "derive" ] }
+quick-xml = { version = "0.21", features = [ "serialize" ] }
+urlencoding = "1.1.1"
+futures = "0.3.13"
+clap = "2.33.3"
