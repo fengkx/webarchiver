@@ -10,11 +10,13 @@ fengkx https://github.com/fengkx/webarchiver
 Save all url in a sitemap to archive.org Wayback Machine
 
 USAGE:
-    webarchiver [OPTIONS] <FILE / URL>
+    webarchiver [FLAGS] [OPTIONS] <FILE / URL>
 
 FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
+        --external      Save external link
+    -h, --help          Prints help information
+        --screenshot    Save screenshot
+    -V, --version       Prints version information
 
 OPTIONS:
     -c, --concurrency <concurrency>    concurrency request number [default: 4]

@@ -28,6 +28,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let sitemap_uri = matches.value_of("sitemap_uri").unwrap();
     info!("Sitemap: {}", sitemap_uri);
 
+    let save_outlinks = matches.is_present("external-links");
+    let save_screenshot = matches.is_present("screenshot");
+
     let mut headers = header::HeaderMap::new();
     headers.insert(USER_AGENT, header::HeaderValue::from_static("webarchiver"));
     let client = reqwest::Client::builder()
@@ -42,6 +45,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let archive_opts = ArchiveOpts {
         concurrency,
         sleep_secs,
+        save_outlinks,
+        save_screenshot,
         ..Default::default()
     };
     submit_urls(client, &urls, &archive_opts).await.unwrap();
@@ -77,6 +82,16 @@ fn build_cli() -> App<'static, 'static> {
                     Ok(_) => Ok(()),
                     Err(_) => Err(format!("Expected a non-negative number but got `{}`", v)),
                 }),
+        )
+        .arg(
+            Arg::with_name("screenshot")
+                .long("screenshot")
+                .help("Save screenshot"),
+        )
+        .arg(
+            Arg::with_name("external-links")
+                .long("external")
+                .help("Save external link"),
         )
         .arg(
             Arg::with_name("sitemap_uri")

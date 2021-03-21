@@ -84,7 +84,7 @@ pub async fn submit_urls(
             match resp {
                 Ok(resp) => {
                     info!(
-                        "archive {}: {}",
+                        "archive {} : {}",
                         urlencoding::decode(url).unwrap(),
                         resp.status()
                     );
