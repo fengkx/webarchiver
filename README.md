@@ -7,7 +7,7 @@
 ```sh
 Web Archiver 0.1
 fengkx https://github.com/fengkx/webarchiver
-Submit sitemap to archive.org Wayback Machine
+Save all url in a sitemap to archive.org Wayback Machine
 
 USAGE:
     webarchiver [OPTIONS] <FILE / URL>
