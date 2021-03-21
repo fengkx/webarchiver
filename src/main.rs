@@ -15,7 +15,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         .unwrap()
         .parse::<usize>()
         .unwrap();
-    info!("concurrency request number: {}", concurrency);
+    info!("concurrency request ammount: {}", concurrency);
     let sleep_secs = matches
         .value_of("sleep_secs")
         .unwrap()
@@ -38,6 +38,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let xml_str = get_xml_str(client, &sitemap_uri).await?;
     let urls = extract_urls(&xml_str)?;
+    info!("Total url count: {}", urls.len());
     let archive_opts = ArchiveOpts {
         concurrency,
         sleep_secs,
@@ -51,7 +52,7 @@ fn build_cli() -> App<'static, 'static> {
     App::new("Web Archiver")
         .version("0.1")
         .author("fengkx https://github.com/fengkx/webarchiver")
-        .about("Submit sitemap to archive.org Wayback Machine")
+        .about("Save all url in a sitemap to archive.org Wayback Machine")
         .setting(AppSettings::ArgRequiredElseHelp)
         .arg(
             Arg::with_name("concurrency")
